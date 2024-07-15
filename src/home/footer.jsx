@@ -25,7 +25,7 @@ const Footer= () => {
     return (
    <Container fluid >
          
-       <div align='center' className="copyright" color="white" style={{color:'white'}} >&copy; 2024 Corporate. All Right Reserved.</div>
+       <div align='center' className="copyright" color="white" style={{color:'white'}} >&copy; 2024 ZanTechnologies. All Right Reserved.</div>
        <div className="socials">
          <ul>
            <li><a href="https://www.facebook.com"><i className="fab fa-facebook-f"></i></a></li>

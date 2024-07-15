@@ -1,8 +1,7 @@
-
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
-import { deletStudent, listStudents } from '../service/StudentService';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import UserService from '../service/userService';
 
 
 const MyLink = () => {
@@ -12,12 +11,20 @@ const MyLink = () => {
  const navigator=useNavigate();
 
  useEffect(()=>{
-  listStudents().then((response)=>{
-    setStudents(response.data)
-  }).catch(error=>{
-    console.error(error)
-  })
- })
+   fetchStudents();
+ },[])
+
+ const fetchStudents=async()=>{
+  try {
+
+      const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+      const response = await UserService.getAllStudents(token)
+      //   console.log(response);
+      setStudents(response); // Assuming the list of users is under the key 'ourUsersList'
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
+}
 
  const Student=()=>{
   navigator('/add-student')
@@ -27,15 +34,25 @@ const MyLink = () => {
   navigator(`/edit-student/${id}`)
  }
 
- const handleDelete=(id)=>{
-  deletStudent(id).then(response=>{
+ const  handleDelete=async(studentId)=>{
+  try {
+      // Prompt for confirmation before deleting the user
+      const confirmDelete = window.confirm('Are you sure you want to delete this user?');
 
-  }).catch(error=>{
-    console.error(error)
-  })
- }
+      const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+      if (confirmDelete) {
+        await UserService.deleteStudent(studentId, token);
+        // After deleting the user, fetch the updated list of users
+        fetchStudents();
+      }
+    } catch (error) {
+      console.error('Error deleting user:', error);
+    }
+}
+
 
     return (
+      <div style={{height:'515px',position:'relative', display:'inline-table',width:'100%'}}>
       <Container >
        <div className='container'>
         <h2 className='text-center'>List of Students</h2>
@@ -74,6 +91,7 @@ const MyLink = () => {
         </table>
        </div>
       </Container>
+      </div>
     );
 };
 

@@ -458,7 +458,7 @@ textarea {
 #header .navbar-collapse a:hover,
 #header .navbar-collapse a.active {
   background: none;
-  color: #f64b4b;
+  color: #0022ff;
 }
 
 #header .navbar-collapse a:hover:before,
@@ -470,7 +470,7 @@ textarea {
 
 #header .navbar-collapse a:before {
   content: '';
-  background: #f64b4b;
+  background: #000dff;
   height: 1px;
   position: absolute;
   bottom: 7px;

@@ -1,12 +1,8 @@
-
-import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import image1 from '../assets/images/img-hero1.jpg'
 import image2 from '../assets/images/img-hero2.jpg'
 import image3 from '../assets/images/img-hero3.jpg'
-
-
-
+import UserService from '../service/userService';
 
 var heroData = [
     {
@@ -34,6 +30,9 @@ var heroData = [
   
 
 const AppHero = () => {
+
+  const isAuthenticated = UserService.isAuthenticated();
+
     return (
       
         <section id='home' className='hero-block'>
@@ -50,7 +49,7 @@ const AppHero = () => {
                   <Carousel.Caption>
                     <h2>{hero.title}</h2>
                     <p>{hero.description}</p>
-                    <a className="btn btn-primary" href='/listStudents'>Get Start <i className="fas fa-chevron-right"></i></a>
+                    {!isAuthenticated && <a className="btn btn-primary" href='/login'>Get Start <i className="fas fa-chevron-right"></i></a>}
                   </Carousel.Caption>             
                 </Carousel.Item>
               );

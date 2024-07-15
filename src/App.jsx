@@ -1,24 +1,31 @@
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './components/header';
-import AppHero from './components/main';
-import About from './components/about';
-import Service from './components/service';
-import Work from './components/works';
-import Team from './components/team';
-import Testimonial from './components/testimonial';
-import Pricing from './components/pricing';
-import Blog from './components/blog';
-import Contact from './components/contact';
-import Footer from './components/footer';
+import Header from './home/header';
+import AppHero from './home/main';
+import About from './home/about';
+import Service from './home/service';
+import Work from './home/works';
+import Team from './home/team';
+import Testimonial from './home/testimonial';
+import Pricing from './home/pricing';
+import Blog from './home/blog';
+import Contact from './home/contact';
+import Footer from './home/footer';
 import { Route, Routes, useLocation} from 'react-router-dom';
-import AddStudent from './components/students';
+import AddStudent from './component/students';
 import Levels from './list/listLevels';
 import School from './list/listSchools';  
 import MyLink from './list/listStudents';
 import SubjectOrdinary from './list/listSubjectOrdinary';
-import Sidebar from './components/sidebar';
+import Sidebar from './home/sidebar';
+import AddClass from './component/level';
+import AddSchool from './component/school';
+import AddSubject from './component/subjectOrdinary';
+import Login from './home/login';
+import Register from './component/register';
+import ListUsers from './list/listUsers';
+import ProfilePage from './component/profilePage';
 
 const App=()=> {
 
@@ -37,7 +44,7 @@ const App=()=> {
   }
   return(
     <div className="App">
-   {navBar}
+      {navBar}
     <main>
 <Routes>
   <Route path='/' element={<AppHero/>}></Route>
@@ -54,7 +61,18 @@ const App=()=> {
   <Route path='/listStudents' element={<MyLink/>}></Route>
   <Route path='/listSchools' element={<School/>}></Route>
   <Route path='/subject/ordinary' element={<SubjectOrdinary/>}></Route>
-  <Route path='/edit-student/:id' element={<AddStudent/>}></Route>
+  <Route path='/edit-student/:studentId' element={<AddStudent/>}></Route>
+  <Route path='/add-class' element={<AddClass/>}></Route>
+  <Route path='/add-school' element={<AddSchool/>}></Route>
+  <Route path='/add-subject' element={<AddSubject/>}></Route>
+  <Route path='/edit-class/:levelId' element={<AddClass/>}></Route>
+  <Route path='/edit-school/:schoolId' element={<AddSchool/>}></Route>
+  <Route path='/edit-subject/:subjectId' element={<AddSubject/>}></Route>
+  <Route path='/login' element={<Login/>}></Route>
+  <Route path='/register' element={<Register/>}></Route>
+  <Route path='/accounts' element={<ListUsers/>}></Route>
+  <Route path='/edit-user/:userId' element={<Register/>}></Route>
+  <Route path='/profile-page' element={<ProfilePage/>}></Route>
   </Routes>
   
     </main>
